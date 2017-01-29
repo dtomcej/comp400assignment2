@@ -6,16 +6,15 @@ import (
 	"math"
 	"math/rand"
 	"os"
-	//"strings"
 	"time"
 )
 
 func main() {
-  //initialize the characterset that we are using
+	//initialize the characterset that we are using
 	const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 	//to achieve 64 bits of entropy, we calculate the entropy per symbol of our set
 	character_entropy := math.Log2(float64(len(characters)))
-	min_chars := int(math.Floor((64/character_entropy) + 0.5))
+	min_chars := int(math.Floor((64 / character_entropy) + 0.5))
 
 	//initialize random number generator
 	source := rand.NewSource(time.Now().UnixNano())
@@ -34,7 +33,7 @@ func main() {
 				password[i] = characters[gen.Intn(len(characters))]
 			}
 			fmt.Printf("System Generated Password: %v\n", string(password[:]))
-		}	else {
+		} else {
 			//password length not long enough
 			fmt.Printf("Password length not long enough. Generating passwords with minimum length: %v\n", min_chars)
 			length = min_chars
